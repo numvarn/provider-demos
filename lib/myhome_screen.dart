@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:ProviderDemos/models/setting_model.dart';
 import 'package:ProviderDemos/next_screen.dart';
 import 'package:flutter/material.dart';
@@ -35,13 +37,13 @@ class _MyHomePageState extends State<MyHomePage> {
           future: _getToken(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              setting.value = snapshot.data;
+              setting.value = jsonDecode(snapshot.data);
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      '${setting.value}',
+                      '${setting.value['token']}',
                     ),
                   ],
                 ),

@@ -19,7 +19,7 @@ class _NextPageState extends State<NextPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('${setting.value}'),
+              Text('${setting.value['token']}'),
             ],
           ),
         ),

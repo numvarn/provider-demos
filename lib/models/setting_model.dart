@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class SettingModel extends ChangeNotifier {
-  String _value = 'initial value';
+  Map<String, dynamic> _value = {};
 
-  String get value => _value;
+  Map<String, dynamic> get value => _value;
 
-  set value(String value) {
+  set value(Map<String, dynamic> value) {
     _value = value;
     notifyListeners();
   }
