@@ -1,5 +1,7 @@
+import 'package:ProviderDemos/models/setting_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as Http;
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -18,47 +20,48 @@ class _MyHomePageState extends State<MyHomePage> {
       body: data,
     );
 
-    print(responese.body);
-
     return responese.body;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Provider Demos'),
-      ),
-      body: FutureBuilder(
-        future: _getToken(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    '${snapshot.data}',
-                  ),
-                ],
-              ),
-            );
-          } else {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  CircularProgressIndicator(),
-                ],
-              ),
-            );
-          }
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+    return Consumer<SettingModel>(
+      builder: (context, setting, child) => Scaffold(
+        appBar: AppBar(
+          title: Text('Provider Demos'),
+        ),
+        body: FutureBuilder(
+          future: _getToken(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              setting.value = snapshot.data;
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      '${setting.value}',
+                    ),
+                  ],
+                ),
+              );
+            } else {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    CircularProgressIndicator(),
+                  ],
+                ),
+              );
+            }
+          },
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          tooltip: 'Increment',
+          child: Icon(Icons.add),
+        ),
       ),
     );
   }

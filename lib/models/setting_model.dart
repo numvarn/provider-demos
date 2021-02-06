@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class SettingModel with ChangeNotifier {
-  String _value = '';
+class SettingModel {
+  String _value = 'initial value';
+
   String get value => _value;
+
+  set value(String value) {
+    _value = value;
+  }
 }
