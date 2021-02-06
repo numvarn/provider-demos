@@ -1,4 +1,5 @@
 import 'package:ProviderDemos/models/setting_model.dart';
+import 'package:ProviderDemos/next_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as Http;
 import 'package:provider/provider.dart';
@@ -58,9 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => NextPage()));
+          },
           tooltip: 'Increment',
-          child: Icon(Icons.add),
+          child: Icon(Icons.keyboard_arrow_right),
         ),
       ),
     );

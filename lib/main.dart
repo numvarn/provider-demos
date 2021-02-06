@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<SettingModel>(create: (_) => SettingModel()),
+        ChangeNotifierProvider<SettingModel>(create: (_) => SettingModel()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
